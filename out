@@ -1,0 +1,10 @@
+Makefile
+USER=semin
+in
+out
+pipex
+pipex.c
+pipex.h
+redirection.c
+test.c
+util.c
