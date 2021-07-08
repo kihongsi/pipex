@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
+# include <sys/wait.h>
 
 int	        parent(int fd, char *file, char *cmd);
 int         child(int fd, char *file, char *cmd);

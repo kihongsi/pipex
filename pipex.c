@@ -12,27 +12,31 @@
 
 #include "pipex.h"
 
-int	parent(int fd, char *file, char *cmd)
+void	run_cmd(char *cmd)
 {
+	char	**ret;
 	char	*command;
 
-	command = ft_strjoin("/bin/", cmd);
+	ret = ft_split(cmd, ' ');
+	command = ft_strjoin("/bin/", ret[0]);
+	execve(command, ret, 0);
+}
+
+int		parent(int fd, char *file, char *cmd)
+{
 	rd_in(file);
 	dup2(fd, 0);
 	close(fd);
-	execve(command, 0, 0);
+	run_cmd(cmd);
 	return (0);
 }
 
 int 	child(int fd, char *file, char *cmd)
 {
-	char	*command;
-
-	command = ft_strjoin("/bin/", cmd);
 	rd_out(file);
 	dup2(fd, 1);
 	close(fd);
-	execve(command, 0, 0);
+	run_cmd(cmd);
 	return (0);
 }
 
@@ -48,7 +52,7 @@ int	main(int ac, char *av[])
 		perror("zsh");
 		exit(1);
 	}
-	pid = fork();
+	pid = fdkgork();
 	if (pid > 0) //parent
 	{
 		close(fd[0]);
