@@ -19,10 +19,11 @@
 # include <fcntl.h>
 # include <sys/wait.h>
 
-int	        parent(int fd, char *file, char *cmd);
-int         child(int fd, char *file, char *cmd);
+void		parent(int fd, char *file, char *cmd);
+void		child(int fd, char *file, char *cmd);
 char		*ft_strjoin(char *dir, char *cmd);
-int		    rd_in(char *file);
-int		    rd_out(char *file);
+int			rd_in(char *file);
+int			rd_out(char *file);
+char		**ft_split(char const *s, char c);
 
 #endif

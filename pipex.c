@@ -22,22 +22,21 @@ void	run_cmd(char *cmd)
 	execve(command, ret, 0);
 }
 
-int		parent(int fd, char *file, char *cmd)
+void	parent(int fd, char *file, char *cmd)
 {
 	rd_in(file);
-	dup2(fd, 0);
-	close(fd);
-	run_cmd(cmd);
-	return (0);
-}
-
-int 	child(int fd, char *file, char *cmd)
-{
-	rd_out(file);
 	dup2(fd, 1);
 	close(fd);
 	run_cmd(cmd);
-	return (0);
+}
+
+void	child(int fd, char *file, char *cmd)
+{
+	rd_out(file);
+	dup2(fd, 0);
+	close(fd);
+	//printf("hihi\n");
+	run_cmd(cmd);
 }
 
 int	main(int ac, char *av[])
@@ -52,12 +51,12 @@ int	main(int ac, char *av[])
 		perror("zsh");
 		exit(1);
 	}
-	pid = fdkgork();
+	pid = fork();
 	if (pid > 0) //parent
 	{
+		waitpid(pid, &status, 0);
 		close(fd[0]);
 		parent(fd[1], av[1], av[2]);
-		wait(&status);
 	}
 	else // child
 	{

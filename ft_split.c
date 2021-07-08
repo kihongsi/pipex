@@ -1,4 +1,4 @@
-#include "libft.h"
+#include "pipex.h"
 
 static int		wdcount(char const *s, char c)
 {
@@ -78,4 +78,3 @@ char			**ft_split(char const *s, char c)
 	ret[i] = 0;
 	return (ret);
 }
-

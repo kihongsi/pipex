@@ -15,7 +15,7 @@ NAME = pipex
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = pipex.c redirection.c util.c
+SRC = pipex.c redirection.c util.c ft_split.c
 
 OBJ = $(SRC:.c=.o)
 

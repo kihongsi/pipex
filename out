@@ -1,10 +1,14 @@
+.
+..
+.git
 Makefile
-USER=semin
+ft_split.c
 in
 out
 pipex
 pipex.c
 pipex.h
 redirection.c
+test
 test.c
 util.c
