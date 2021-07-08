@@ -17,17 +17,21 @@ int	parent(int fd, char *file, char *cmd)
 	char	*command;
 
 	command = ft_strjoin("/bin/", cmd);
-	rd_in(file, fd);
+	rd_in(file);
+	dup2(fd, 0);
+	close(fd);
 	execve(command, 0, 0);
 	return (0);
 }
 
-int child(int fd, char *file, char *cmd)
+int 	child(int fd, char *file, char *cmd)
 {
 	char	*command;
 
 	command = ft_strjoin("/bin/", cmd);
-	rd_out(file, fd);
+	rd_out(file);
+	dup2(fd, 1);
+	close(fd);
 	execve(command, 0, 0);
 	return (0);
 }

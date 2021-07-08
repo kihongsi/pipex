@@ -12,7 +12,7 @@
 
 #include "pipex.h"
 
-int		rd_in(char *file, int oldfd)
+int		rd_in(char *file)
 {
 	int	newfd;
 
@@ -22,12 +22,12 @@ int		rd_in(char *file, int oldfd)
 		perror("zsh");
 		return (-1);
 	}
-	dup2(newfd, oldfd);
+	dup2(newfd, 0);
 	close(newfd);
 	return (0);
 } //newfd -> oldfd
 
-int		rd_out(char *file, int oldfd)
+int		rd_out(char *file)
 {
 	int newfd;
 
@@ -37,7 +37,7 @@ int		rd_out(char *file, int oldfd)
 		perror("zsh");
 		return (-1);
 	}
-	dup2(newfd, oldfd);
+	dup2(newfd, 1);
 	close(newfd);
 	return (0);
 } //oldfd -> newfd

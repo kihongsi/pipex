@@ -21,7 +21,7 @@
 int	        parent(int fd, char *file, char *cmd);
 int         child(int fd, char *file, char *cmd);
 char		*ft_strjoin(char *dir, char *cmd);
-int		    rd_in(char *file, int oldfd);
-int		    rd_out(char *file, int oldfd);
+int		    rd_in(char *file);
+int		    rd_out(char *file);
 
 #endif
