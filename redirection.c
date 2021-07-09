@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 12:21:50 by semin             #+#    #+#             */
-/*   Updated: 2021/07/07 16:55:17 by semin            ###   ########.fr       */
+/*   Updated: 2021/07/09 11:37:05 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		rd_out(char *file)
 {
 	int newfd;
 
-	newfd = open(file, O_RDWR | O_CREAT, 0644);
+	newfd = open(file, O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (newfd < 0)
 	{
 		perror("zsh");
