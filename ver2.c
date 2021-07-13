@@ -57,22 +57,22 @@ int		main(int ac, char *av[])
 		return(0);
 	if (pipe(fd) < 0)
 	{
-		perror("Fork error");
+		perror("zsh");
 		exit(1);
 	}
 	pid = fork();
-	if (pid == 0) //child
+	if (pid == 0) //parent
 	{
 		close(fd[0]);
 		rd_in(av[1]);
-		child(fd[1], av[2]);
+		parent(fd[1], av[2]);
 	}
 	else
 	{
 		wait(&status);
 		close(fd[1]);
 		rd_out(av[4]);
-		parent(fd[0], av[3]);
+		child(fd[0], av[3]);
 	}
 	exit(0);
 }
