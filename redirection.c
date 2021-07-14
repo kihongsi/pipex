@@ -6,13 +6,13 @@
 /*   By: semin <semin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 12:21:50 by semin             #+#    #+#             */
-/*   Updated: 2021/07/09 11:37:05 by semin            ###   ########.fr       */
+/*   Updated: 2021/07/14 19:26:24 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int		rd_in(char *file)
+int	rd_in(char *file)
 {
 	int	newfd;
 
@@ -25,11 +25,11 @@ int		rd_in(char *file)
 	dup2(newfd, 0);
 	close(newfd);
 	return (0);
-} //newfd -> oldfd
+}
 
-int		rd_out(char *file)
+int	rd_out(char *file)
 {
-	int newfd;
+	int	newfd;
 
 	newfd = open(file, O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (newfd < 0)
@@ -40,4 +40,4 @@ int		rd_out(char *file)
 	dup2(newfd, 1);
 	close(newfd);
 	return (0);
-} //oldfd -> newfd
+}

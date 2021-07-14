@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 12:02:29 by semin             #+#    #+#             */
-/*   Updated: 2021/07/09 17:33:28 by semin            ###   ########.fr       */
+/*   Updated: 2021/07/14 19:30:35 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,46 +33,46 @@ void	run_cmd(char *cmd)
 	perror("command not found");
 }
 
-void	parent(int fd, char *cmd)
+void	parent(int fd, char *file, char *cmd)
 {
+	rd_out(file);
 	dup2(fd, 0);
 	close(fd);
 	run_cmd(cmd);
 }
 
-void	child(int fd, char *cmd)
+void	child(int fd, char *file, char *cmd)
 {
+	rd_in(file);
 	dup2(fd, 1);
 	close(fd);
 	run_cmd(cmd);
 }
 
-int		main(int ac, char *av[])
+int	main(int ac, char *av[])
 {
 	int		fd[2];
 	pid_t	pid;
 	int		status;
 
 	if (ac != 5)
-		return(0);
+		return (0);
 	if (pipe(fd) < 0)
 	{
 		perror("Fork error");
 		exit(1);
 	}
 	pid = fork();
-	if (pid == 0) //child
+	if (pid == 0)
 	{
 		close(fd[0]);
-		rd_in(av[1]);
-		child(fd[1], av[2]);
+		child(fd[1], av[1], av[2]);
 	}
 	else
 	{
 		wait(&status);
 		close(fd[1]);
-		rd_out(av[4]);
-		parent(fd[0], av[3]);
+		parent(fd[0], av[4], av[3]);
 	}
 	exit(0);
 }

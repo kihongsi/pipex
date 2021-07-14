@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 17:19:30 by semin             #+#    #+#             */
-/*   Updated: 2021/07/09 17:19:32 by semin            ###   ########.fr       */
+/*   Updated: 2021/07/14 19:40:28 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int		wdcount(char const *s, char c)
 	return (wd);
 }
 
-static char		**malloc_err(char **ret)
+/*static char		**malloc_err(char **ret)
 {
 	int	i;
 
@@ -45,7 +45,7 @@ static char		**malloc_err(char **ret)
 	}
 	free(ret);
 	return (0);
-}
+}*/
 
 static void		my_strlcpy(char *dst, char *src, int size)
 {
@@ -96,7 +96,7 @@ int				split_quotes(char *s, char **ret, int *i, char c)
 char			**ft_split(char const *s, char c)
 {
 	char	**ret;
-	char	*tmp;
+	//char	*tmp;
 	int		i;
 
 	if (!s)
@@ -109,7 +109,8 @@ char			**ft_split(char const *s, char c)
 	{
 		s += split_quotes((char *)s, ret, &i, '\'');
 		s += split_quotes((char *)s, ret, &i, '\"');
-		if (*s != c)
+		s += split_quotes((char *)s, ret, &i, ' ');
+		/*if (*s != c)
 		{
 			tmp = (char *)s;
 			while (*s != c && *s)
@@ -121,6 +122,7 @@ char			**ft_split(char const *s, char c)
 		}
 		if (*s)
 			s++;
+			*/
 	}
 	ret[i] = 0;
 	return (ret);
