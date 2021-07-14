@@ -6,13 +6,13 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 17:19:30 by semin             #+#    #+#             */
-/*   Updated: 2021/07/14 19:40:28 by semin            ###   ########.fr       */
+/*   Updated: 2021/07/14 20:03:33 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static int		wdcount(char const *s, char c)
+static int	wdcount(char const *s, char c)
 {
 	int	wd;
 
@@ -33,7 +33,7 @@ static int		wdcount(char const *s, char c)
 	return (wd);
 }
 
-/*static char		**malloc_err(char **ret)
+static char	**malloc_err(char **ret)
 {
 	int	i;
 
@@ -45,9 +45,9 @@ static int		wdcount(char const *s, char c)
 	}
 	free(ret);
 	return (0);
-}*/
+}
 
-static void		my_strlcpy(char *dst, char *src, int size)
+static void	my_strlcpy(char *dst, char *src, int size)
 {
 	int		i;
 
@@ -62,7 +62,7 @@ static void		my_strlcpy(char *dst, char *src, int size)
 	*dst = 0;
 }
 
-int		ft_strchr(char *s, char c)
+int	ft_strchr(char *s, char c)
 {
 	if (!s)
 		return (0);
@@ -75,7 +75,7 @@ int		ft_strchr(char *s, char c)
 	return (1);
 }
 
-int				split_quotes(char *s, char **ret, int *i, char c)
+int	split_quotes(char *s, char **ret, int *i, char c)
 {
 	char	*tmp;
 
@@ -99,8 +99,6 @@ char			**ft_split(char const *s, char c)
 	char	*tmp;
 	int		i;
 
-	if (!s)
-		return (NULL);
 	ret = (char **)malloc(sizeof(char *) * (wdcount(s, c) + 1));
 	if (!ret)
 		return (NULL);
@@ -112,7 +110,7 @@ char			**ft_split(char const *s, char c)
 		if (*s != c)
 		{
 			tmp = (char *)s;
-			while (*s != c && *s)
+			while (s != c && *s)
 				s++;
 			ret[i] = (char *)malloc(s - tmp + 1);
 			if (!ret[i])
