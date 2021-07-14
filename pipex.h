@@ -24,4 +24,9 @@ int			rd_in(char *file);
 int			rd_out(char *file);
 char		**ft_split(char const *s, char c);
 
+void	my_strlcpy(char *dst, char *src, int size);
+char	**malloc_err(char **ret);
+int	split_quotes(char *s, char **ret, int *i, char c);
+int	split_space(char *s, char **ret, int *i, char c);
+
 #endif

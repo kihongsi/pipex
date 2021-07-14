@@ -25,7 +25,7 @@ static int	ft_strlen(char *s)
 	return (ret);
 }
 
-char		*ft_strjoin(char *dir, char *cmd)
+char	*ft_strjoin(char *dir, char *cmd)
 {
 	char    *ret;
 	int     len;
@@ -45,4 +45,57 @@ char		*ft_strjoin(char *dir, char *cmd)
 		ret[i2++] = cmd[i1++];
 	ret[i2] = '\0';
 	return (ret);
+}
+
+int	ft_strchr(char *s, char c)
+{
+	if (!s)
+		return (0);
+	while (*s)
+	{
+		if (c == *s)
+			return (1);
+		s++;
+	}
+	return (1);
+}
+
+int	split_quotes(char *s, char **ret, int *i, char c)
+{
+	char	*tmp;
+
+	if (*s == c && *s)
+	{
+		s++;
+		tmp = (char *)s;
+		while (*s != c)
+			s++;
+		ret[*i] = (char *)malloc(s - tmp + 1);
+		my_strlcpy(ret[*i], tmp, s - tmp + 1);
+		(*i)++;
+		return (s - tmp + 2);
+	}
+	return (0);
+}
+
+int	split_space(char *s, char **ret, int *i, char c)
+{
+	char	*tmp;
+
+	if (*s != c)
+	{
+		tmp = s;
+		while (*s != c && *s)
+			s++;
+		ret[*i] = (char *)malloc(s - tmp + 1);
+		if (!ret[*i])
+		{
+			malloc_err(ret);
+			return (-1);
+		}
+		my_strlcpy(ret[*i], tmp, s - tmp + 1);
+		(*i)++;
+		return (s - tmp);
+	}
+	return (0);
 }

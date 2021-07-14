@@ -33,7 +33,7 @@ static int	wdcount(char const *s, char c)
 	return (wd);
 }
 
-static char	**malloc_err(char **ret)
+char	**malloc_err(char **ret)
 {
 	int	i;
 
@@ -47,7 +47,7 @@ static char	**malloc_err(char **ret)
 	return (0);
 }
 
-static void	my_strlcpy(char *dst, char *src, int size)
+void	my_strlcpy(char *dst, char *src, int size)
 {
 	int		i;
 
@@ -62,42 +62,11 @@ static void	my_strlcpy(char *dst, char *src, int size)
 	*dst = 0;
 }
 
-int	ft_strchr(char *s, char c)
-{
-	if (!s)
-		return (0);
-	while (*s)
-	{
-		if (c == *s)
-			return (1);
-		s++;
-	}
-	return (1);
-}
-
-int	split_quotes(char *s, char **ret, int *i, char c)
-{
-	char	*tmp;
-
-	if (*s == c && *s)
-	{
-		s++;
-		tmp = (char *)s;
-		while (*s != c)
-			s++;
-		ret[*i] = (char *)malloc(s - tmp + 1);
-		my_strlcpy(ret[*i], tmp, s - tmp + 1);
-		(*i)++;
-		return (s - tmp + 2);
-	}
-	return (0);
-}
-
-char			**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**ret;
-	char	*tmp;
 	int		i;
+	int		s_ret;
 
 	ret = (char **)malloc(sizeof(char *) * (wdcount(s, c) + 1));
 	if (!ret)
@@ -107,16 +76,10 @@ char			**ft_split(char const *s, char c)
 	{
 		s += split_quotes((char *)s, ret, &i, '\'');
 		s += split_quotes((char *)s, ret, &i, '\"');
-		if (*s != c)
-		{
-			tmp = (char *)s;
-			while (s != c && *s)
-				s++;
-			ret[i] = (char *)malloc(s - tmp + 1);
-			if (!ret[i])
-				return (malloc_err(ret));
-			my_strlcpy(ret[i++], tmp, s - tmp + 1);
-		}
+		s_ret = split_space((char *)s, ret, &i, ' ');
+		if (s_ret < 0)
+			return (0);
+		s += s_ret;
 		if (*s)
 			s++;
 	}
