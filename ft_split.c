@@ -96,7 +96,7 @@ int				split_quotes(char *s, char **ret, int *i, char c)
 char			**ft_split(char const *s, char c)
 {
 	char	**ret;
-	//char	*tmp;
+	char	*tmp;
 	int		i;
 
 	if (!s)
@@ -109,8 +109,7 @@ char			**ft_split(char const *s, char c)
 	{
 		s += split_quotes((char *)s, ret, &i, '\'');
 		s += split_quotes((char *)s, ret, &i, '\"');
-		s += split_quotes((char *)s, ret, &i, ' ');
-		/*if (*s != c)
+		if (*s != c)
 		{
 			tmp = (char *)s;
 			while (*s != c && *s)
@@ -122,7 +121,6 @@ char			**ft_split(char const *s, char c)
 		}
 		if (*s)
 			s++;
-			*/
 	}
 	ret[i] = 0;
 	return (ret);
