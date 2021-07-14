@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 16:36:14 by semin             #+#    #+#             */
-/*   Updated: 2021/07/07 16:53:33 by semin            ###   ########.fr       */
+/*   Updated: 2021/07/15 00:48:49 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ft_strlen(char *s)
 {
-	int ret;
+	int	ret;
 
 	ret = 0;
 	while (*s)
@@ -27,8 +27,8 @@ static int	ft_strlen(char *s)
 
 char	*ft_strjoin(char *dir, char *cmd)
 {
-	char    *ret;
-	int     len;
+	char	*ret;
+	int		len;
 	int		i1;
 	int		i2;
 
