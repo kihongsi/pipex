@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 17:19:30 by semin             #+#    #+#             */
-/*   Updated: 2021/07/14 20:03:33 by semin            ###   ########.fr       */
+/*   Updated: 2021/07/15 19:43:39 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ char	**ft_split(char const *s, char c)
 	{
 		s += split_quotes((char *)s, ret, &i, '\'');
 		s += split_quotes((char *)s, ret, &i, '\"');
+		s += split_quotes((char *)s, ret, &i, '\'');
 		s_ret = split_space((char *)s, ret, &i, ' ');
 		if (s_ret < 0)
 			return (0);
